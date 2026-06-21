@@ -84,9 +84,41 @@ adb install app/build/outputs/apk/debug/app-debug.apk
 
 或在 Android Studio 中直接打开项目，点击 Run。
 
-### 连接后端
+### 启动后端
 
-应用启动后进入服务器配置页面，填入你的 Reasonix 后端地址即可开始使用。
+Android 客户端需要连接到 Reasonix 后端服务才能正常工作。
+
+#### 1. 下载 Reasonix CLI
+
+从 [DeepSeek-Reasonix Releases](https://github.com/esengine/DeepSeek-Reasonix/releases) 下载对应平台的预编译二进制文件：
+
+| 平台 | 文件名 |
+|------|--------|
+| Linux x86_64 | `reasonix-linux-amd64` |
+| macOS (Intel) | `reasonix-darwin-amd64` |
+| macOS (Apple Silicon) | `reasonix-darwin-arm64` |
+| Windows x86_64 | `reasonix-windows-amd64.exe` |
+
+下载后重命名为 `reasonix`（Windows 保留 `.exe`），添加可执行权限并放入 `PATH`：
+
+```bash
+# Linux / macOS
+chmod +x reasonix
+sudo mv reasonix /usr/local/bin/
+```
+
+#### 2. 启动后端服务
+
+```bash
+reasonix serve --addr "0.0.0.0:8787"
+```
+
+- `--addr "0.0.0.0:8787"` 使服务监听所有网络接口，方便手机在同一局域网内连接
+- 默认端口为 `8787`，可根据需要自行调整
+
+#### 3. 连接客户端
+
+应用启动后进入服务器配置页面，填入后端的局域网地址（如 `http://192.168.1.100:8787`）即可开始使用。
 
 ---
 
